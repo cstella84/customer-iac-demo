@@ -1,3 +1,4 @@
+# Authenticate with HCP Vault
 provider "vault" {
   auth_login {
     path = "auth/approle/login"
@@ -9,17 +10,20 @@ provider "vault" {
   }
 }
 
+# Generate dynamic AWS secrets from HCP Vault 
 data "vault_aws_access_credentials" "creds" {
   backend = "aws"
   role    = "dev-role"
 }
 
+# Authenticate with AWS using dynamic creds
 provider "aws" {
   region     = var.region
   access_key = data.vault_aws_access_credentials.creds.access_key
   secret_key = data.vault_aws_access_credentials.creds.secret_key
 }
 
+# Pull latest ubuntu image from AWS
 data "aws_ami" "ubuntu" {
   most_recent = true
 
