@@ -10,7 +10,7 @@ variable "instance_type" {
 
 variable "instance_name" {
   description = "EC2 instance name"
-  default     = "Updated by pull request"
+  default     = "Created by Terraform"
 }
 
 variable "login_approle_role_id" {}
