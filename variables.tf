@@ -10,7 +10,7 @@ variable "instance_type" {
 
 variable "instance_name" {
   description = "EC2 instance name"
-  default     = "Updated latest"
+  default     = "ec2-demo"
 }
 
 variable "vault_backend" {
