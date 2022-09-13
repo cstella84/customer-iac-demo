@@ -3,7 +3,7 @@
 This is a simple demo used to perform the following tasks in Terraform:
 
 1. Connect to Vault using Approle auth method
-2. Generate dynamic AWS credentials with EC2 permissions
+2. Generate short-lived dynamic AWS credentials with EC2 permissions
 3. Log into AWS using dynamic credentials
 4. Spin up EC2 instance
 
@@ -17,7 +17,7 @@ The following steps must be performed on a Vault instance.
 `vault secrets enable aws`
 
 - Configure AWS secrets engine  
->**NOTE:** Use an AWS IAM account with permissions to create new IAM users. [Example policy](https://developer.hashicorp.com/vault/docs/secrets/aws#example-iam-policy-for-vault)
+>**NOTE:** Use an AWS IAM account with sufficient permissions to create new IAM users. [Example policy](https://developer.hashicorp.com/vault/docs/secrets/aws#example-iam-policy-for-vault)
 ```
 vault write aws/config/root \
     access_key=<aws access key> \
@@ -51,11 +51,6 @@ EOF
 - Create new Vault policy with permissions on AWS secrets engine path
 ```
 vault policy write aws-ec2-policy -<<EOF
-# Permissions to generate AWS credentials
-#path "aws/roles/ec2-role" {
-#    capabilities = ["create", "read"]
-#}
-
 # Permissions to generate AWS credentials
 path "aws/creds/ec2-role" {
     capabilities = ["read"]
