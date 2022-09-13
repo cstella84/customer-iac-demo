@@ -2,7 +2,6 @@
 provider "vault" {
   auth_login {
     path = "auth/approle/login"
-    namespace = "admin"
     parameters = {
       role_id   = var.login_approle_role_id
       secret_id = var.login_approle_secret_id
@@ -12,8 +11,8 @@ provider "vault" {
 
 # Generate dynamic AWS secrets from HCP Vault 
 data "vault_aws_access_credentials" "creds" {
-  backend = "aws"
-  role    = "dev-role"
+  backend = var.vault_backend
+  role    = var.vault_role
 }
 
 # Authenticate with AWS using dynamic creds
@@ -43,9 +42,9 @@ data "aws_ami" "ubuntu" {
 # Create AWS EC2 Instance
 resource "aws_instance" "ubuntu" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.nano"
+  instance_type = var.instance_type
 
   tags = {
-    Name  = var.instance_name
+    Name = var.instance_name
   }
 }
