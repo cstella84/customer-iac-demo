@@ -23,6 +23,14 @@ variable "vault_role" {
   default     = "ec2-role"
 }
 
+variable "vault_namespace" {
+  description = "Vault Namespace"
+}
+
+variable "vault_address" {
+  description = "Address of Vault server"
+}
+
 variable "login_approle_role_id" {
   description = "Role ID for Approle auth method"
 }
