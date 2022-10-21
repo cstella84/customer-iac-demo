@@ -1,7 +1,10 @@
 # Authenticate with HCP Vault
 provider "vault" {
+  namespace = var.vault_namespace
+  address   = var.vault_address
   auth_login {
     path = "auth/approle/login"
+    namespace = var.vault_namespace
     parameters = {
       role_id   = var.login_approle_role_id
       secret_id = var.login_approle_secret_id
