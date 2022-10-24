@@ -3,7 +3,7 @@ provider "vault" {
   namespace = var.vault_namespace
   address   = var.vault_address
   auth_login {
-    path = "auth/approle/login"
+    path      = "auth/approle/login"
     namespace = var.vault_namespace
     parameters = {
       role_id   = var.login_approle_role_id
@@ -39,7 +39,7 @@ data "aws_ami" "ubuntu" {
     values = ["hvm"]
   }
 
-  owners = ["679593333241"] # Canonical
+  owners = ["099720109477"] # Canonical
 }
 
 # Create AWS EC2 Instance
