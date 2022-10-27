@@ -51,3 +51,5 @@ resource "aws_instance" "ubuntu" {
     Name = var.instance_name
   }
 }
+
+# made a change
