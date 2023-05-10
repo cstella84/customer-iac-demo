@@ -31,7 +31,7 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu-minimal/images/hvm-ssd/ubuntu-focal-20.04-*"]
+    values = ["al2023-ami-2023.0.20230503.0-kernel-6.1-x86_64"]
   }
 
   filter {
