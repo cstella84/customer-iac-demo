@@ -44,7 +44,7 @@ data "aws_ami" "aws-ec2" {
 
 # Create AWS EC2 Instance
 resource "aws_instance" "aws-ec2" {
-  ami           = data.aws_ami.ubuntu.id
+  ami           = data.aws_ami.aws-ec2.id
   instance_type = var.instance_type
 
   tags = {
@@ -53,7 +53,7 @@ resource "aws_instance" "aws-ec2" {
 }
 
 resource "aws_instance" "aws-ec2-2" {
-  ami           = data.aws_ami.ubuntu.id
+  ami           = data.aws_ami.aws-ec2.id
   instance_type = var.instance_type
 
   tags = {
