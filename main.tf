@@ -51,12 +51,3 @@ resource "aws_instance" "aws-ec2" {
     Name = var.instance_name
   }
 }
-
-resource "aws_instance" "aws-ec2-2" {
-  ami           = data.aws_ami.aws-ec2.id
-  instance_type = var.instance_type
-
-  tags = {
-    Name = var.instance_name
-  }
-}
