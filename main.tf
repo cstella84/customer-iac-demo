@@ -26,7 +26,7 @@ provider "aws" {
 }
 
 # Pull latest ubuntu image from AWS
-data "aws_ami" "ubuntu" {
+data "aws_ami" "aws-ec2" {
   most_recent = true
 
   filter {
@@ -43,14 +43,20 @@ data "aws_ami" "ubuntu" {
 }
 
 # Create AWS EC2 Instance
-resource "aws_instance" "ubuntu" {
+resource "aws_instance" "aws-ec2" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
-  count         = 2
 
   tags = {
     Name = var.instance_name
   }
 }
 
-# made a change
+resource "aws_instance" "aws-ec2" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
+
+  tags = {
+    Name = var.instance_name
+  }
+}
