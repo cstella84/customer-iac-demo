@@ -51,3 +51,5 @@ resource "aws_instance" "aws-ec2" {
     Name = var.instance_name
   }
 }
+
+# i made a change
